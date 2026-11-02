@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>TEMMY WEARS | Fashion, Jewellery & Accessories</title>
+    <meta
+      name="description"
+      content="Temmy Wears offers premium fashion, jewellery, smart watches, airpods, corporate wear, trousers, and luxury accessories. Chat on WhatsApp today."
+    />
+   
+  </head>
+  <body>
+    <div class="auth-screen" id="authScreen">
+      <div class="auth-card">
+        <div class="brand-wrap">
+          <div class="brand-mark">TW</div>
+          <div>
+            <p class="brand-kicker">Temmy Wears</p>
+            <h2>Welcome</h2>
+          </div>
+        </div>
+
+        <div class="mode-toggle" aria-label="Authentication mode switch">
+          <button class="mode-btn is-active" type="button" data-mode="login">Login</button>
+          <button class="mode-btn" type="button" data-mode="signup">Sign up</button>
+        </div>
+
+        <form id="authForm" class="auth-form" novalidate>
+          <label class="field-group hidden" id="nameField">
+            <span>Full name</span>
+            <input id="fullName" type="text" placeholder="Your full name" />
+          </label>
+
+          <label class="field-group">
+            <span>Email address</span>
+            <input id="email" type="email" placeholder="you@example.com" required />
+            <small class="field-note">Use a real, verified email address. Temporary or disposable emails are blocked.</small>
+          </label>
+
+          <label class="field-group">
+            <span>Password</span>
+            <input id="password" type="password" placeholder="Enter your password" required />
+          </label>
+
+          <button class="auth-submit" type="submit">Login</button>
+          <p id="authMessage" class="auth-message" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+
+    <div class="page-shell app-shell hidden" id="appShell">
+      <header class="hero">
+        <video class="hero-video" autoplay muted loop playsinline poster="/images/image%20one.webp">
+          <source src="/videos/background-video.mp4" type="video/mp4" />
+          Your browser does not support embedded videos.
+        </video>
+        <div class="hero-overlay"></div>
+
+        <nav class="topbar">
+          <a class="brand" href="#home" aria-label="Temmy Wears home">
+            TEMMY <span>WEARS</span>
+          </a>
+
+          <div class="nav-actions">
+            <span class="welcome-pill">Hi, <span id="welcomeName">there</span></span>
+            <a class="secondary-link" href="#collection">Collection</a>
+            <button id="logoutBtn" class="logout-button" type="button">Log out</button>
+            <a
+              class="whatsapp-button"
+              href="https://wa.me/2348064349486?text=Hello%20Temmy%20Wears%2C%20I%27d%20like%20to%20make%20an%20enquiry."
+              target="_blank"
+              rel="noopener noreferrer"
+              >Chat on WhatsApp</a
+            >
+          </div>
+        </nav>
+
+        <section class="hero-content" id="home">
+          <p class="eyebrow">FASHION • JEWELLERY • ACCESSORIES</p>
+          <h1>
+            <span class="line-one">Wear Your</span>
+            <span class="line-two">Confidence.</span>
+          </h1>
+          <p class="hero-description">
+            Discover premium looks that turn heads. From luxury jewellery and smart
+            accessories to trendy corporate wear, Temmy Wears brings confidence to every
+            moment.
+          </p>
+
+          <div class="cta-row">
+            <a
+              class="main-button"
+              href="https://wa.me/2348064349486?text=Hello%20Temmy%20Wears%2C%20please%20send%20me%20your%20available%20items."
+              target="_blank"
+              rel="noopener noreferrer"
+              >Shop With Us</a
+            >
+            <a class="ghost-button" href="tel:+2348064349486">Call Now</a>
+          </div>
+
+          <div class="contact-line">
+            <span class="phone-pill">Call / WhatsApp: +234 806 434 9486</span>
+          </div>
+        </section>
+      </header>
+
+      <main>
+        <section class="feature-bar">
+          <div class="feature-item">
+            <strong>40+</strong>
+            <span>Curated styles</span>
+          </div>
+          <div class="feature-item">
+            <strong>HD</strong>
+            <span>Premium visuals</span>
+          </div>
+          <div class="feature-item">
+            <strong>Fast</strong>
+            <span>Quick WhatsApp response</span>
+          </div>
+          <div class="feature-item">
+            <strong>Luxury</strong>
+            <span>Trend-focused fashion</span>
+          </div>
+        </section>
+
+        <section class="collection" id="collection">
+          <div class="section-heading">
+            <p class="section-tag">Featured collection</p>
+            <h2>Style picks for every moment</h2>
+          </div>
+
+          <div class="filter-row" aria-label="Categories">
+            <button class="filter active" type="button">All</button>
+            <button class="filter" type="button">Smart Watches</button>
+            <button class="filter" type="button">AirPods</button>
+            <button class="filter" type="button">Jewellery</button>
+            <button class="filter" type="button">Wears</button>
+          </div>
+
+          <div class="product-grid" id="productGrid" aria-live="polite"></div>
+        </section>
+
+        <section class="story-card">
+          <div class="story-copy">
+            <p class="section-tag">Why choose us</p>
+            <h2>Bold looks. Beautiful style. Your confidence.</h2>
+            <p>
+              At Temmy Wears, we blend elegance, comfort, and statement fashion to help
+              you stand out in every setting. From everyday essentials to standout luxury
+              pieces, our collection is designed to elevate your wardrobe.
+            </p>
+          </div>
+
+          <div class="story-panel">
+            <div class="mini-card">
+              <span class="mini-label">Popular</span>
+              <strong>Luxury Jewellery</strong>
+            </div>
+            <div class="mini-card accent">
+              <span class="mini-label">Best Seller</span>
+              <strong>Smart Beauty Tech</strong>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div>
+          <a class="brand footer-brand" href="#home">TEMMY <span>WEARS</span></a>
+        </div>
+        <div class="footer-contact">
+          <a href="tel:+2348064349486">+234 806 434 9486</a>
+          <a
+            href="https://wa.me/2348064349486?text=Hello%20Temmy%20Wears%2C%20I%27d%20like%20to%20enquire%20about%20your%20products."
+            target="_blank"
+            rel="noopener noreferrer"
+            >WhatsApp Chat</a
+          >
+        </div>
+      </footer>
+    </div>
+
+    <script src="/script.js"></script>
+  </body>
+</html>
