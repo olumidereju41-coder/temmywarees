@@ -55,11 +55,12 @@ img {
   justify-content: flex-end;
   min-height: 100vh;
   padding: clamp(1.25rem, 3vw, 2rem);
-  background-image: linear-gradient(90deg, rgba(10, 8, 14, 0.68), rgba(20, 12, 18, 0.48)),
-    url('/login-page-image.jpg');
+  background-image: linear-gradient(90deg, rgba(10, 8, 14, 0.72), rgba(20, 12, 18, 0.56)),
+    url('./login-page-image.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 .auth-card {
