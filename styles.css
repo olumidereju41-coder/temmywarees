@@ -517,6 +517,20 @@ img {
   object-fit: cover;
 }
 
+.stock-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border-radius: 999px;
+  padding: 0.45rem 0.7rem;
+  background: rgba(255, 79, 163, 0.9);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06rem;
+  text-transform: uppercase;
+}
+
 .product-meta {
   display: flex;
   flex: 1;
@@ -559,6 +573,17 @@ img {
   color: #b8efd6;
   font-size: 0.8rem;
   font-weight: 700;
+}
+
+.stock-label {
+  border-radius: 999px;
+  padding: 0.72rem 0.8rem;
+  background: rgba(255, 79, 163, 0.12);
+  color: #ffb6d1;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04rem;
+  text-transform: uppercase;
 }
 
 .story-card {

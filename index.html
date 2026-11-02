@@ -19,45 +19,7 @@
    
   </head>
   <body>
-    <div class="auth-screen" id="authScreen">
-      <div class="auth-card">
-        <div class="brand-wrap">
-          <div class="brand-mark">TW</div>
-          <div>
-            <p class="brand-kicker">Temmy Wears</p>
-            <h2>Welcome</h2>
-          </div>
-        </div>
-
-        <div class="mode-toggle" aria-label="Authentication mode switch">
-          <button class="mode-btn is-active" type="button" data-mode="login">Login</button>
-          <button class="mode-btn" type="button" data-mode="signup">Sign up</button>
-        </div>
-
-        <form id="authForm" class="auth-form" novalidate>
-          <label class="field-group hidden" id="nameField">
-            <span>Full name</span>
-            <input id="fullName" type="text" placeholder="Your full name" />
-          </label>
-
-          <label class="field-group">
-            <span>Email address</span>
-            <input id="email" type="email" placeholder="you@example.com" required />
-            <small class="field-note">Use a real, verified email address. Temporary or disposable emails are blocked.</small>
-          </label>
-
-          <label class="field-group">
-            <span>Password</span>
-            <input id="password" type="password" placeholder="Enter your password" required />
-          </label>
-
-          <button class="auth-submit" type="submit">Login</button>
-          <p id="authMessage" class="auth-message" aria-live="polite"></p>
-        </form>
-      </div>
-    </div>
-
-    <div class="page-shell app-shell hidden" id="appShell">
+    <div class="page-shell app-shell" id="appShell">
       <header class="hero">
         <video class="hero-video" autoplay muted loop playsinline poster="./images/image%20one.webp">
           <source src="./videos/background-video.mp4" type="video/mp4" />
@@ -71,9 +33,7 @@
           </a>
 
           <div class="nav-actions">
-            <span class="welcome-pill">Hi, <span id="welcomeName">there</span></span>
             <a class="secondary-link" href="#collection">Collection</a>
-            <button id="logoutBtn" class="logout-button" type="button">Log out</button>
             <a
               class="whatsapp-button"
               href="https://wa.me/2348064349486?text=Hello%20Temmy%20Wears%2C%20I%27d%20like%20to%20make%20an%20enquiry."
@@ -143,7 +103,7 @@
             <button class="filter active" type="button">All</button>
             <button class="filter" type="button">Smart Watches</button>
             <button class="filter" type="button">AirPods</button>
-            <button class="filter" type="button">Jewellery</button>
+            <button class="filter" type="button">Chains</button>
             <button class="filter" type="button">Wears</button>
           </div>
 
@@ -164,7 +124,7 @@
           <div class="story-panel">
             <div class="mini-card">
               <span class="mini-label">Popular</span>
-              <strong>Luxury Jewellery</strong>
+              <strong>Luxury Chains</strong>
             </div>
             <div class="mini-card accent">
               <span class="mini-label">Best Seller</span>

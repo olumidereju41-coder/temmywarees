@@ -11,17 +11,17 @@
   { name: 'Pulse Audio Pods', category: 'AirPods', price: '₦92,400', image: 'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?auto=format&fit=crop&w=900&q=80' },
   { name: 'NightDrive Pods', category: 'AirPods', price: '₦99,000', image: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=900&q=80' },
 
-  { name: 'Gold Pocket Chain', category: 'Jewellery', price: '₦18,800', image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Silver Pocket Chain', category: 'Jewellery', price: '₦16,200', image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Royal Link Chain', category: 'Jewellery', price: '₦21,500', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Diamond Pocket Piece', category: 'Jewellery', price: '₦28,800', image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Executive Chain', category: 'Jewellery', price: '₦26,400', image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=80' },
+  { name: 'Gold Pocket Chain', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
+  { name: 'Silver Pocket Chain', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
+  { name: 'Royal Link Chain', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
+  { name: 'Diamond Pocket Piece', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
+  { name: 'Executive Chain', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
 
-  { name: 'Cuban Wrist Chain', category: 'Jewellery', price: '₦22,000', image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Gold Wrist Link', category: 'Jewellery', price: '₦19,900', image: 'https://images.unsplash.com/photo-1601821765780-754fa98637c1?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Charm Wristwear', category: 'Jewellery', price: '₦24,700', image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Luxe Wrist Set', category: 'Jewellery', price: '₦31,600', image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Statement Wrist Chain', category: 'Jewellery', price: '₦27,800', image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=900&q=80' },
+  { name: 'Cuban Wrist Chain', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
+  { name: 'Gold Wrist Link', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
+  { name: 'Charm Wristwear', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
+  { name: 'Luxe Wrist Set', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
+  { name: 'Statement Wrist Chain', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
 
   { name: 'Arrow Trousers', category: 'Wears', price: '₦20,500', image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80' },
   { name: 'Slim Tailored Trousers', category: 'Wears', price: '₦24,800', image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=900&q=80' },
@@ -35,11 +35,11 @@
   { name: 'Signature Office Set', category: 'Wears', price: '₦54,700', image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80' },
   { name: 'Boardroom Collection', category: 'Wears', price: '₦61,000', image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80' },
 
-  { name: 'Pearl Drop Earring', category: 'Jewellery', price: '₦15,600', image: 'https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Emerald Ring', category: 'Jewellery', price: '₦13,900', image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Twilight Necklace', category: 'Jewellery', price: '₦18,200', image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Bridal Bracelet', category: 'Jewellery', price: '₦16,500', image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Curved Gold Cuff', category: 'Jewellery', price: '₦20,300', image: 'https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?auto=format&fit=crop&w=900&q=80' },
+  { name: 'Pearl Drop Earring', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
+  { name: 'Emerald Ring', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
+  { name: 'Twilight Necklace', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
+  { name: 'Bridal Bracelet', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
+  { name: 'Curved Gold Cuff', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
 
   { name: 'Luxury Sunglasses', category: 'Accessories', price: '₦14,800', image: 'https://images.unsplash.com/photo-1577803947579-9f5d0c7f0d9b?auto=format&fit=crop&w=900&q=80' },
   { name: 'Leather Wallet', category: 'Accessories', price: '₦12,500', image: 'https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=80' },
@@ -168,13 +168,16 @@ function renderProducts(category = 'All') {
         <article class="product-card">
           <div class="product-image">
             <img src="${product.image}" alt="${product.name}" loading="lazy" />
+            ${product.inStock === false ? '<span class="stock-badge">Out of stock</span>' : ''}
           </div>
           <div class="product-meta">
             <span class="product-category">${product.category}</span>
             <h3>${product.name}</h3>
             <div class="product-footer">
               <span class="price">${product.price}</span>
-              <a class="buy-link" href="https://wa.me/2348064349486?text=${encodeURIComponent(`Hello Temmy Wears, I want to order the ${product.name}.`) }" target="_blank" rel="noopener noreferrer">Buy now</a>
+              ${product.inStock === false
+                ? '<span class="stock-label">Unavailable</span>'
+                : `<a class="buy-link" href="https://wa.me/2348064349486?text=${encodeURIComponent(`Hello Temmy Wears, I want to order the ${product.name}.`) }" target="_blank" rel="noopener noreferrer">Buy now</a>`}
             </div>
           </div>
         </article>
@@ -190,18 +193,30 @@ function setMode(mode) {
   });
 
   const isSignUp = mode === 'signup';
-  loginField.classList.toggle('hidden', !isSignUp);
-  const submitButton = document.querySelector('.auth-submit');
-  submitButton.textContent = isSignUp ? 'Create account' : 'Login';
 
-  if (isSignUp) {
-    fullNameInput.setAttribute('required', 'required');
-  } else {
-    fullNameInput.removeAttribute('required');
+  if (loginField) {
+    loginField.classList.toggle('hidden', !isSignUp);
+  }
+
+  const submitButton = document.querySelector('.auth-submit');
+  if (submitButton) {
+    submitButton.textContent = isSignUp ? 'Create account' : 'Login';
+  }
+
+  if (fullNameInput) {
+    if (isSignUp) {
+      fullNameInput.setAttribute('required', 'required');
+    } else {
+      fullNameInput.removeAttribute('required');
+    }
   }
 }
 
 function setAuthMessage(message, isError = false) {
+  if (!authMessage) {
+    return;
+  }
+
   authMessage.textContent = message;
   authMessage.classList.toggle('error', isError);
 }
@@ -221,26 +236,16 @@ function updateWelcomeText() {
 }
 
 function applyAuthState() {
-  try {
-    const savedUser = getActiveUser();
-    const isLoggedIn = Boolean(savedUser && savedUser.email);
+  if (authScreen) {
+    authScreen.remove();
+  }
 
-    if (authScreen) {
-      authScreen.classList.toggle('hidden', isLoggedIn);
-    }
+  if (appShell) {
+    appShell.classList.remove('hidden');
+  }
 
-    if (appShell) {
-      appShell.classList.toggle('hidden', !isLoggedIn);
-    }
-
-    updateWelcomeText();
-  } catch (error) {
-    if (authScreen) {
-      authScreen.classList.remove('hidden');
-    }
-    if (appShell) {
-      appShell.classList.add('hidden');
-    }
+  if (welcomeName) {
+    welcomeName.textContent = 'there';
   }
 }
 
@@ -249,6 +254,10 @@ modeButtons.forEach((button) => {
 });
 
 function showAuthPopup(message) {
+  if (!authMessage) {
+    return;
+  }
+
   setAuthMessage(message, true);
   const existing = document.querySelector('.auth-popup');
   if (existing) {
@@ -270,89 +279,19 @@ function showAuthPopup(message) {
   }, 1800);
 }
 
-authForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-
-  const fullName = fullNameInput.value.trim();
-  const rawEmail = emailInput.value.trim();
-  const password = passwordInput.value.trim();
-
-  if (!rawEmail || !password) {
-    showAuthPopup('Please provide both email and password.');
-    return;
-  }
-
-  if (authMode === 'signup' && !fullName) {
-    showAuthPopup('Please enter your full name to create an account.');
-    return;
-  }
-
-  const emailValidation = validateEmailAddress(rawEmail);
-  if (!emailValidation.valid) {
-    showAuthPopup(emailValidation.message, true);
-    return;
-  }
-
-  const normalizedEmail = emailValidation.normalizedEmail;
-
-  if (authMode === 'login') {
-    const users = loadUsers();
-    const savedUser = users.find((user) => user.email === normalizedEmail && user.password === password);
-
-    if (!savedUser) {
-      showAuthPopup('Incorrect email or password.');
-      return;
-    }
-
-    if (!savedUser.emailVerified) {
-      showAuthPopup('This email has not been verified yet. Please use a verified email address.', true);
-      return;
-    }
-
-    setActiveUser(savedUser);
-    setAuthMessage('Login successful.');
-    setTimeout(() => {
-      authForm.reset();
-      setMode('login');
-      applyAuthState();
-    }, 400);
-    return;
-  }
-
-  const users = loadUsers();
-  const emailAlreadyExists = users.some((user) => user.email === normalizedEmail);
-
-  if (emailAlreadyExists) {
-    showAuthPopup('This email is already registered. Please log in instead.', true);
-    setMode('login');
-    return;
-  }
-
-  const user = {
-    id: globalThis.crypto && crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
-    name: fullName,
-    email: normalizedEmail,
-    password,
-    emailVerified: true,
-    createdAt: new Date().toISOString()
-  };
-
-  users.push(user);
-  saveUsers(users);
-  setActiveUser(user);
-  setAuthMessage('Account created successfully.');
-  setTimeout(() => {
-    authForm.reset();
-    setMode('login');
-    applyAuthState();
-  }, 400);
-});
+if (authForm) {
+  authForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    showAuthPopup('Authentication has been removed for this storefront.');
+  });
+}
 
 if (logoutBtn) {
   logoutBtn.addEventListener('click', () => {
     clearActiveUser();
-    authForm.reset();
-    setMode('login');
+    if (authForm) {
+      authForm.reset();
+    }
     setAuthMessage('');
     applyAuthState();
   });
