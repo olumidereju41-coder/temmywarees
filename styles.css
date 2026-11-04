@@ -946,6 +946,228 @@ img {
   margin-top: auto;
 }
 
+.comment-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.comment-avatars {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 1.1rem;
+}
+
+.comment-trigger {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-weight: 700;
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+}
+
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+  max-height: 220px;
+  overflow: hidden;
+  transition: max-height 180ms ease;
+}
+
+.comment-list.collapsed {
+  max-height: 84px;
+}
+
+.comment-list.expanded {
+  max-height: 400px;
+}
+
+.comment-preview {
+  padding: 10px 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.view-comments-btn {
+  align-self: flex-start;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 0.45rem 0.8rem;
+  cursor: pointer;
+}
+
+.comment-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.comment-item {
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.comment-user-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+}
+
+.comment-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+.empty-comments {
+  padding: 10px 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.owner-panel-btn {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font-weight: 800;
+  padding: 0.7rem 0.9rem;
+  cursor: pointer;
+}
+
+.owner-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  background: rgba(9, 7, 12, 0.55);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 180ms ease, visibility 180ms ease;
+}
+
+.owner-overlay.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.owner-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 40;
+  width: min(540px, calc(100vw - 24px));
+  height: 100vh;
+  padding: 20px 18px 18px;
+  background: rgba(17, 14, 22, 0.98);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  transform: translateX(110%);
+  transition: transform 220ms ease;
+  overflow-y: auto;
+}
+
+.owner-panel.is-open {
+  transform: translateX(0);
+}
+
+.owner-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.owner-panel-header h3 {
+  margin: 8px 0 0;
+  font-size: 2rem;
+}
+
+.owner-panel-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.owner-comment-card {
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.owner-comment-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+  color: var(--gold);
+  font-size: 0.72rem;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.owner-comment-card p {
+  margin: 0 0 8px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.owner-comment-card small {
+  color: rgba(255,255,255,0.6);
+}
+
+.owner-delete-btn {
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 79, 163, 0.16);
+  color: #ffbfd5;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.45rem 0.7rem;
+  cursor: pointer;
+}
+
+.owner-empty {
+  padding: 18px;
+  border: 1px dashed rgba(255,255,255,0.12);
+  border-radius: 16px;
+  color: var(--muted);
+  text-align: center;
+}
+
 .price {
   font-size: 1.1rem;
   font-weight: 800;

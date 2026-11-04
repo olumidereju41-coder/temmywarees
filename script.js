@@ -157,6 +157,11 @@ const checkoutLink = document.getElementById('checkoutLink');
 const pageCheckoutLink = document.getElementById('pageCheckoutLink');
 const floatingCartBtn = document.getElementById('floatingCartBtn');
 const navCartBtn = document.getElementById('navCartBtn');
+const ownerPanelBtn = document.getElementById('ownerPanelBtn');
+const ownerPanel = document.getElementById('ownerPanel');
+const ownerOverlay = document.getElementById('ownerOverlay');
+const closeOwnerPanelBtn = document.getElementById('closeOwnerPanelBtn');
+const ownerPanelBody = document.getElementById('ownerPanelBody');
 const filters = document.querySelectorAll('.filter');
 const authScreen = document.getElementById('authScreen');
 const appShell = document.getElementById('appShell');
@@ -172,6 +177,8 @@ const welcomeName = document.getElementById('welcomeName');
 let authMode = 'login';
 let activeCategory = 'All';
 const CART_KEY = 'temmyWearsCart';
+const COMMENTS_KEY = 'temmyWearsComments';
+const OWNER_PASSWORD = 'temmy123';
 
 function getNumericPrice(priceText) {
   return Number(String(priceText).replace(/[^\d]/g, '')) || 0;
@@ -348,7 +355,310 @@ function removeFromCart(productName) {
   renderCartItems();
 }
 
-function renderProducts(category = 'All', searchTerm = '') {
+function getProductComments(productName) {
+  try {
+    const storedComments = JSON.parse(localStorage.getItem(COMMENTS_KEY) || '{}');
+    const comments = Array.isArray(storedComments[productName]) ? storedComments[productName] : [];
+    return comments
+      .map((commentItem) => ({
+        text: String(commentItem?.text || '').trim(),
+        date: commentItem?.date || new Date().toISOString(),
+        id: commentItem?.id || commentItem?.date || `${Date.now()}-${Math.random().toString(16).slice(2)}`
+      }))
+      .filter((commentItem) => commentItem.text)
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+  } catch (error) {
+    return [];
+  }
+}
+
+function getAllComments() {
+  try {
+    const storedComments = JSON.parse(localStorage.getItem(COMMENTS_KEY) || '{}');
+    const productNames = Object.keys(storedComments);
+
+    return productNames.flatMap((productName) => {
+      const comments = Array.isArray(storedComments[productName]) ? storedComments[productName] : [];
+      return comments
+        .map((commentItem) => ({
+          id: commentItem?.id || commentItem?.date || `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+          product: productName,
+          text: String(commentItem?.text || '').trim(),
+          date: commentItem?.date || new Date().toISOString()
+        }))
+        .filter((commentItem) => commentItem.text)
+        .sort((a, b) => new Date(b.date) - new Date(a.date));
+    });
+  } catch (error) {
+    return [];
+  }
+}
+
+async function syncCommentsFromServer() {
+  try {
+    const response = await fetch('/api/comments');
+    if (!response.ok) {
+      return;
+    }
+
+    const payload = await response.json();
+    const normalizedComments = {};
+
+    (payload.comments || []).forEach((commentItem) => {
+      const productName = commentItem.product;
+      if (!productName) {
+        return;
+      }
+
+      if (!normalizedComments[productName]) {
+        normalizedComments[productName] = [];
+      }
+
+      normalizedComments[productName].push({
+        id: commentItem.id,
+        text: commentItem.text,
+        date: commentItem.date
+      });
+    });
+
+    localStorage.setItem(COMMENTS_KEY, JSON.stringify(normalizedComments));
+  } catch (error) {
+    // Ignore sync failures and keep local comments as fallback.
+  }
+}
+
+async function fetchProductComments(productName) {
+  try {
+    const response = await fetch(`/api/comments?product=${encodeURIComponent(productName)}`);
+    if (!response.ok) {
+      return getProductComments(productName);
+    }
+
+    const payload = await response.json();
+    const comments = payload.comments || [];
+    const normalizedComments = comments.map((commentItem) => ({
+      id: commentItem.id,
+      text: String(commentItem.text || '').trim(),
+      date: commentItem.date || new Date().toISOString()
+    })).filter((commentItem) => commentItem.text);
+
+    const localData = JSON.parse(localStorage.getItem(COMMENTS_KEY) || '{}');
+    localData[productName] = normalizedComments;
+    localStorage.setItem(COMMENTS_KEY, JSON.stringify(localData));
+    return normalizedComments;
+  } catch (error) {
+    return getProductComments(productName);
+  }
+}
+
+async function saveCommentToServer(productName, text) {
+  try {
+    const response = await fetch('/api/comments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ product: productName, text })
+    });
+
+    if (!response.ok) {
+      throw new Error('Comment save failed');
+    }
+
+    const payload = await response.json();
+    const currentComments = getProductComments(productName);
+    const mergedComments = [payload.comment, ...currentComments].filter(Boolean);
+    const localData = JSON.parse(localStorage.getItem(COMMENTS_KEY) || '{}');
+    localData[productName] = mergedComments;
+    localStorage.setItem(COMMENTS_KEY, JSON.stringify(localData));
+    return payload.comment;
+  } catch (error) {
+    const savedComments = JSON.parse(localStorage.getItem(COMMENTS_KEY) || '{}');
+    const productComments = Array.isArray(savedComments[productName]) ? savedComments[productName] : [];
+    const newComment = {
+      id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+      text,
+      date: new Date().toISOString()
+    };
+    productComments.push(newComment);
+    savedComments[productName] = productComments;
+    localStorage.setItem(COMMENTS_KEY, JSON.stringify(savedComments));
+    return newComment;
+  }
+}
+
+function openOwnerPanel() {
+  if (!ownerPanel || !ownerOverlay) {
+    return;
+  }
+
+  const password = window.prompt('Enter owner password to access comments dashboard:', '');
+  if (password === null) {
+    return;
+  }
+
+  if (password !== OWNER_PASSWORD) {
+    showAuthPopup('Incorrect owner password');
+    return;
+  }
+
+  renderOwnerPanel();
+  ownerPanel.classList.add('is-open');
+  ownerOverlay.classList.add('is-visible');
+}
+
+function closeOwnerPanel() {
+  if (!ownerPanel || !ownerOverlay) {
+    return;
+  }
+
+  ownerPanel.classList.remove('is-open');
+  ownerOverlay.classList.remove('is-visible');
+}
+
+async function deleteComment(productName, commentDate) {
+  const password = OWNER_PASSWORD;
+
+  try {
+    const response = await fetch(`/api/comments/${encodeURIComponent(productName)}/${encodeURIComponent(commentDate)}?ownerPassword=${encodeURIComponent(password)}`, {
+      method: 'DELETE'
+    });
+
+    if (!response.ok) {
+      throw new Error('Delete failed');
+    }
+
+    const storedComments = JSON.parse(localStorage.getItem(COMMENTS_KEY) || '{}');
+    const productComments = Array.isArray(storedComments[productName]) ? storedComments[productName] : [];
+    const nextComments = productComments.filter((commentItem) => String(commentItem?.date || commentItem?.id) !== String(commentDate));
+
+    if (nextComments.length) {
+      storedComments[productName] = nextComments;
+    } else {
+      delete storedComments[productName];
+    }
+
+    localStorage.setItem(COMMENTS_KEY, JSON.stringify(storedComments));
+    await renderOwnerPanel();
+    renderProducts(activeCategory, searchInput ? searchInput.value : '');
+  } catch (error) {
+    showAuthPopup('Unable to delete comment');
+  }
+}
+
+async function renderOwnerPanel() {
+  if (!ownerPanelBody) {
+    return;
+  }
+
+  try {
+    const response = await fetch(`/api/comments/all?ownerPassword=${encodeURIComponent(OWNER_PASSWORD)}`);
+    if (!response.ok) {
+      throw new Error('Unauthorized');
+    }
+
+    const payload = await response.json();
+    const allComments = payload.comments || [];
+
+    if (!allComments.length) {
+      ownerPanelBody.innerHTML = '<div class="owner-empty">No comments have been left yet.</div>';
+      return;
+    }
+
+    ownerPanelBody.innerHTML = allComments
+      .map(
+        (commentItem) => `
+          <div class="owner-comment-card">
+            <div class="owner-comment-header">
+              <span>${commentItem.product}</span>
+              <button type="button" class="owner-delete-btn" data-product-name="${commentItem.product}" data-comment-date="${commentItem.date}">Delete</button>
+            </div>
+            <p>${commentItem.text}</p>
+            <small>${new Date(commentItem.date).toLocaleString([], {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+            })}</small>
+          </div>
+        `
+      )
+      .join('');
+  } catch (error) {
+    const allComments = getAllComments();
+    if (!allComments.length) {
+      ownerPanelBody.innerHTML = '<div class="owner-empty">No comments have been left yet.</div>';
+      return;
+    }
+
+    ownerPanelBody.innerHTML = allComments
+      .map(
+        (commentItem) => `
+          <div class="owner-comment-card">
+            <div class="owner-comment-header">
+              <span>${commentItem.product}</span>
+              <button type="button" class="owner-delete-btn" data-product-name="${commentItem.product}" data-comment-date="${commentItem.date}">Delete</button>
+            </div>
+            <p>${commentItem.text}</p>
+            <small>${new Date(commentItem.date).toLocaleString([], {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+            })}</small>
+          </div>
+        `
+      )
+      .join('');
+  }
+}
+
+function renderCommentList(productName, comments = getProductComments(productName)) {
+  const latestComment = comments[0];
+  const previewText = latestComment ? latestComment.text : 'No comments yet for this product.';
+  const previewExcerpt = previewText.length > 60 ? `${previewText.slice(0, 60)}...` : previewText;
+
+  if (!comments.length) {
+    return `
+      <div class="comment-list collapsed">
+        <div class="comment-preview">No comments yet for this product.</div>
+        <button type="button" class="view-comments-btn" data-view-product="${productName}">View comments</button>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="comment-list collapsed">
+      <div class="comment-preview">${previewExcerpt}</div>
+      <button type="button" class="view-comments-btn" data-view-product="${productName}">View comments</button>
+      <div class="comment-list-items" hidden>
+        ${comments
+          .map(
+            (commentItem) => `
+              <div class="comment-item">
+                <div class="comment-user-row">
+                  <span class="comment-user">Customer</span>
+                  <span class="comment-date">${new Date(commentItem.date).toLocaleString([], {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })}</span>
+                </div>
+                <p>${commentItem.text}</p>
+              </div>
+            `
+          )
+          .join('')}
+      </div>
+    </div>
+  `;
+}
+
+async function renderProducts(category = 'All', searchTerm = '') {
   if (!productGrid) {
     return;
   }
@@ -382,11 +692,26 @@ function renderProducts(category = 'All', searchTerm = '') {
                 ? '<span class="stock-label">Unavailable</span>'
                 : `<button class="buy-link" type="button" data-buy-product="${product.name}">Buy now</button>`}
             </div>
+            <div class="comment-bar" data-product-name="${product.name}">
+              <div class="comment-avatars">
+                <span>👤</span>
+                <span>✨</span>
+              </div>
+              <button type="button" class="comment-trigger" data-comment-product="${product.name}">Comment</button>
+            </div>
+            <div data-comment-slot="${product.name}" class="comment-slot"></div>
           </div>
         </article>
       `
     )
     .join('');
+
+  const commentSlots = productGrid.querySelectorAll('[data-comment-slot]');
+  for (const slot of commentSlots) {
+    const productName = slot.dataset.commentSlot;
+    const comments = await fetchProductComments(productName);
+    slot.innerHTML = renderCommentList(productName, comments);
+  }
 }
 
 function findProductByName(searchTerm) {
@@ -568,11 +893,75 @@ if (searchForm && searchInput) {
 if (productGrid) {
   productGrid.addEventListener('click', (event) => {
     const buyButton = event.target.closest('[data-buy-product]');
-    if (!buyButton) {
+    if (buyButton) {
+      addToCart(buyButton.dataset.buyProduct);
       return;
     }
 
-    addToCart(buyButton.dataset.buyProduct);
+    const commentButton = event.target.closest('[data-comment-product]');
+    if (commentButton) {
+      const productName = commentButton.dataset.commentProduct;
+      const product = products.find((item) => item.name === productName);
+
+      if (!product) {
+        showAuthPopup('Unavailable product');
+        return;
+      }
+
+      const comment = window.prompt(`Leave a comment about ${product.name}:`, '');
+      if (comment === null) {
+        return;
+      }
+
+      const trimmedComment = comment.trim();
+      if (!trimmedComment) {
+        showAuthPopup('Comment cannot be empty');
+        return;
+      }
+
+      try {
+        await saveCommentToServer(product.name, trimmedComment);
+      } catch (error) {
+        const savedComments = JSON.parse(localStorage.getItem(COMMENTS_KEY) || '{}');
+        const productComments = Array.isArray(savedComments[product.name]) ? savedComments[product.name] : [];
+        productComments.push({
+          text: trimmedComment,
+          date: new Date().toISOString()
+        });
+        savedComments[product.name] = productComments;
+        localStorage.setItem(COMMENTS_KEY, JSON.stringify(savedComments));
+      }
+
+      renderProducts(activeCategory, searchInput ? searchInput.value : '');
+      showAuthPopup('Comment added successfully');
+    }
+
+    const viewCommentsButton = event.target.closest('[data-view-product]');
+    if (viewCommentsButton) {
+      const productName = viewCommentsButton.dataset.viewProduct;
+      const commentList = viewCommentsButton.closest('.comment-list');
+      const commentItems = commentList?.querySelector('.comment-list-items');
+
+      if (!commentList || !commentItems) {
+        return;
+      }
+
+      const isHidden = commentItems.hasAttribute('hidden');
+      commentItems.toggleAttribute('hidden', !isHidden);
+      viewCommentsButton.textContent = isHidden ? 'Hide comments' : 'View comments';
+      commentList.classList.toggle('expanded', isHidden);
+    }
+  });
+}
+
+if (ownerPanelBody) {
+  ownerPanelBody.addEventListener('click', (event) => {
+    const deleteButton = event.target.closest('[data-comment-date]');
+    if (!deleteButton) {
+      return;
+    }
+
+    deleteComment(deleteButton.dataset.productName, deleteButton.dataset.commentDate);
   });
 }
 
@@ -610,6 +999,18 @@ if (navCartBtn) {
     openCartDrawer();
     document.getElementById('cartPage')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
+}
+
+if (ownerPanelBtn) {
+  ownerPanelBtn.addEventListener('click', openOwnerPanel);
+}
+
+if (closeOwnerPanelBtn) {
+  closeOwnerPanelBtn.addEventListener('click', closeOwnerPanel);
+}
+
+if (ownerOverlay) {
+  ownerOverlay.addEventListener('click', closeOwnerPanel);
 }
 
 if (closeCartBtn) {
