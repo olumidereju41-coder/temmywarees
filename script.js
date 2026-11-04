@@ -891,7 +891,7 @@ if (searchForm && searchInput) {
 }
 
 if (productGrid) {
-  productGrid.addEventListener('click', (event) => {
+  productGrid.addEventListener('click', async (event) => {
     const buyButton = event.target.closest('[data-buy-product]');
     if (buyButton) {
       addToCart(buyButton.dataset.buyProduct);
