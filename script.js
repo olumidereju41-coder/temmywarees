@@ -11,17 +11,17 @@
   { name: 'Pulse Audio Pods', category: 'AirPods', price: '₦92,400', image: 'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?auto=format&fit=crop&w=900&q=80' },
   { name: 'NightDrive Pods', category: 'AirPods', price: '₦99,000', image: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=900&q=80' },
 
-  { name: 'Gold Pocket Chain', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
-  { name: 'Silver Pocket Chain', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
-  { name: 'Royal Link Chain', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
-  { name: 'Diamond Pocket Piece', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
-  { name: 'Executive Chain', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
+  { name: 'Gold Pocket Chain', category: 'Chains', price: '₦7,000', image: './images/chain/IMG-20261102-WA0009.jpg', inStock: true },
+  { name: 'Silver Pocket Chain', category: 'Chains', price: '₦7,000', image: './images/chain/IMG-20261102-WA0010.jpg', inStock: true },
+  { name: 'Royal Link Chain', category: 'Chains', price: '₦7,000', image: './images/chain/IMG-20261102-WA0011.jpg', inStock: true },
+  { name: 'Diamond Pocket Piece', category: 'Chains', price: '₦7,000', image: './images/chain/IMG-20261102-WA0012.jpg', inStock: true },
+  { name: 'Executive Chain', category: 'Chains', price: '₦7,000', image: './images/chain/IMG-20261102-WA0013.jpg', inStock: true },
 
-  { name: 'Cuban Wrist Chain', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
-  { name: 'Gold Wrist Link', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
-  { name: 'Charm Wristwear', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
-  { name: 'Luxe Wrist Set', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
-  { name: 'Statement Wrist Chain', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
+  { name: 'Cuban Wrist Chain', category: 'Chains', price: '₦7,000', image: './images/wrist chain/IMG-20261102-WA0014.jpg', inStock: true },
+  { name: 'Gold Wrist Link', category: 'Chains', price: '₦7,000', image: './images/wrist chain/IMG-20261102-WA0021.jpg', inStock: true },
+  { name: 'Charm Wristwear', category: 'Chains', price: '₦7,000', image: './images/neck chain/IMG-20261102-WA0015.jpg', inStock: true },
+  { name: 'Luxe Wrist Set', category: 'Chains', price: '₦7,000', image: './images/neck chain/IMG-20261102-WA0017.jpg', inStock: true },
+  { name: 'Statement Wrist Chain', category: 'Chains', price: '₦7,000', image: './images/neck chain/IMG-20261102-WA0027.jpg', inStock: true },
 
   { name: 'Arrow Trousers', category: 'Wears', price: '₦20,500', image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80' },
   { name: 'Slim Tailored Trousers', category: 'Wears', price: '₦24,800', image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=900&q=80' },
@@ -35,11 +35,11 @@
   { name: 'Signature Office Set', category: 'Wears', price: '₦54,700', image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80' },
   { name: 'Boardroom Collection', category: 'Wears', price: '₦61,000', image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80' },
 
-  { name: 'Pearl Drop Earring', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
-  { name: 'Emerald Ring', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
-  { name: 'Twilight Necklace', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
-  { name: 'Bridal Bracelet', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
-  { name: 'Curved Gold Cuff', category: 'Chains', price: '₦7,000', image: './images/image%20one.webp', inStock: false },
+  { name: 'Pearl Drop Earring', category: 'Chains', price: '₦7,000', image: './images/chain/IMG-20261102-WA0016.jpg', inStock: true },
+  { name: 'Emerald Ring', category: 'Chains', price: '₦7,000', image: './images/chain/IMG-20261102-WA0018.jpg', inStock: true },
+  { name: 'Twilight Necklace', category: 'Chains', price: '₦7,000', image: './images/chain/IMG-20261102-WA0023.jpg', inStock: true },
+  { name: 'Bridal Bracelet', category: 'Chains', price: '₦7,000', image: './images/chain/IMG-20261102-WA0009.jpg', inStock: true },
+  { name: 'Curved Gold Cuff', category: 'Chains', price: '₦7,000', image: './images/neck chain/IMG-20261102-WA0015.jpg', inStock: true },
 
   { name: 'Luxury Sunglasses', category: 'Accessories', price: '₦14,800', image: 'https://images.unsplash.com/photo-1577803947579-9f5d0c7f0d9b?auto=format&fit=crop&w=900&q=80' },
   { name: 'Leather Wallet', category: 'Accessories', price: '₦12,500', image: 'https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=80' },
@@ -139,6 +139,10 @@ function validateEmailAddress(rawEmail) {
 }
 
 const productGrid = document.getElementById('productGrid');
+const searchInput = document.getElementById('productSearch');
+const searchForm = document.getElementById('searchForm');
+const navToggle = document.querySelector('.nav-toggle');
+const navPanel = document.getElementById('navPanel');
 const filters = document.querySelectorAll('.filter');
 const authScreen = document.getElementById('authScreen');
 const appShell = document.getElementById('appShell');
@@ -152,20 +156,29 @@ const passwordInput = document.getElementById('password');
 const logoutBtn = document.getElementById('logoutBtn');
 const welcomeName = document.getElementById('welcomeName');
 let authMode = 'login';
+let activeCategory = 'All';
 
-function renderProducts(category = 'All') {
+function renderProducts(category = 'All', searchTerm = '') {
   if (!productGrid) {
     return;
   }
 
-  const filteredProducts = category === 'All'
-    ? products
-    : products.filter((product) => product.category === category);
+  activeCategory = category;
+  const normalizedSearch = searchTerm.trim().toLowerCase();
+
+  const filteredProducts = products.filter((product) => {
+    const matchesCategory = category === 'All' || product.category === category;
+    const matchesSearch = !normalizedSearch
+      || product.name.toLowerCase().includes(normalizedSearch)
+      || product.category.toLowerCase().includes(normalizedSearch);
+
+    return matchesCategory && matchesSearch;
+  });
 
   productGrid.innerHTML = filteredProducts
     .map(
       (product) => `
-        <article class="product-card">
+        <article class="product-card" data-product-name="${product.name}">
           <div class="product-image">
             <img src="${product.image}" alt="${product.name}" loading="lazy" />
             ${product.inStock === false ? '<span class="stock-badge">Out of stock</span>' : ''}
@@ -184,6 +197,40 @@ function renderProducts(category = 'All') {
       `
     )
     .join('');
+}
+
+function findProductByName(searchTerm) {
+  const query = searchTerm.trim().toLowerCase();
+
+  if (!query) {
+    return null;
+  }
+
+  return products.find((product) => {
+    const productName = product.name.toLowerCase();
+    const productCategory = product.category.toLowerCase();
+
+    return productName === query
+      || productName.includes(query)
+      || productCategory.includes(query);
+  }) || null;
+}
+
+function jumpToProduct(productName) {
+  const targetCard = Array.from(productGrid?.querySelectorAll('.product-card') || []).find(
+    (card) => card.dataset.productName === productName
+  );
+
+  if (!targetCard) {
+    return;
+  }
+
+  targetCard.classList.add('is-highlighted');
+  targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  setTimeout(() => {
+    targetCard.classList.remove('is-highlighted');
+  }, 1800);
 }
 
 function setMode(mode) {
@@ -300,9 +347,48 @@ if (logoutBtn) {
 filters.forEach((filterButton) => {
   filterButton.addEventListener('click', () => {
     filters.forEach((button) => button.classList.toggle('active', button === filterButton));
-    renderProducts(filterButton.textContent.trim());
+    renderProducts(filterButton.textContent.trim(), searchInput ? searchInput.value : '');
   });
 });
+
+if (searchInput) {
+  searchInput.addEventListener('input', (event) => {
+    renderProducts(activeCategory, event.target.value);
+  });
+}
+
+if (searchForm && searchInput) {
+  searchForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const query = searchInput.value.trim();
+    const matchingProduct = findProductByName(query);
+
+    if (!matchingProduct) {
+      showAuthPopup('Unavailable product');
+      return;
+    }
+
+    searchInput.value = matchingProduct.name;
+    renderProducts(matchingProduct.category, matchingProduct.name);
+    jumpToProduct(matchingProduct.name);
+    document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
+if (navToggle && navPanel) {
+  navToggle.addEventListener('click', () => {
+    const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', String(!isExpanded));
+    navPanel.classList.toggle('is-open', !isExpanded);
+  });
+
+  navPanel.querySelectorAll('.nav-link, .secondary-link, .whatsapp-button').forEach((link) => {
+    link.addEventListener('click', () => {
+      navToggle.setAttribute('aria-expanded', 'false');
+      navPanel.classList.remove('is-open');
+    });
+  });
+}
 
 renderProducts();
 setMode('login');

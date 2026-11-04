@@ -27,20 +27,41 @@
         </video>
         <div class="hero-overlay"></div>
 
-        <nav class="topbar">
+        <nav class="topbar" aria-label="Main navigation">
           <a class="brand" href="#home" aria-label="Temmy Wears home">
             TEMMY <span>WEARS</span>
           </a>
 
-          <div class="nav-actions">
-            <a class="secondary-link" href="#collection">Collection</a>
-            <a
-              class="whatsapp-button"
-              href="https://wa.me/2348064349486?text=Hello%20Temmy%20Wears%2C%20I%27d%20like%20to%20make%20an%20enquiry."
-              target="_blank"
-              rel="noopener noreferrer"
-              >Chat on WhatsApp</a
-            >
+          <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="nav-dot"></span>
+            <span class="nav-dot"></span>
+            <span class="nav-dot"></span>
+          </button>
+
+          <div class="nav-panel" id="navPanel">
+            <div class="nav-links">
+              <a class="nav-link" href="#home">Home</a>
+              <a class="nav-link" href="#collection">Collection</a>
+              <a class="nav-link" href="#story">Why us</a>
+            </div>
+
+            <form class="search-form" id="searchForm" role="search">
+              <label class="search-field" aria-label="Search products">
+                <span class="search-icon" aria-hidden="true">⌕</span>
+                <input id="productSearch" type="search" placeholder="Search products..." aria-label="Search products" />
+              </label>
+              <button class="search-button" type="submit">Search</button>
+            </form>
+
+            <div class="nav-actions">
+              <a
+                class="whatsapp-button"
+                href="https://wa.me/2348064349486?text=Hello%20Temmy%20Wears%2C%20I%27d%20like%20to%20make%20an%20enquiry."
+                target="_blank"
+                rel="noopener noreferrer"
+                >Chat on WhatsApp</a
+              >
+            </div>
           </div>
         </nav>
 
@@ -110,7 +131,7 @@
           <div class="product-grid" id="productGrid" aria-live="polite"></div>
         </section>
 
-        <section class="story-card">
+        <section class="story-card" id="story">
           <div class="story-copy">
             <p class="section-tag">Why choose us</p>
             <h2>Bold looks. Beautiful style. Your confidence.</h2>
