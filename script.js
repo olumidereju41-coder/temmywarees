@@ -143,6 +143,20 @@ const searchInput = document.getElementById('productSearch');
 const searchForm = document.getElementById('searchForm');
 const navToggle = document.querySelector('.nav-toggle');
 const navPanel = document.getElementById('navPanel');
+const cartDrawer = document.getElementById('cartDrawer');
+const cartOverlay = document.getElementById('cartOverlay');
+const closeCartBtn = document.getElementById('closeCartBtn');
+const cartItemsContainer = document.getElementById('cartItems');
+const cartPageItems = document.getElementById('cartPageItems');
+const cartTotal = document.getElementById('cartTotal');
+const summaryTotal = document.getElementById('summaryTotal');
+const summaryItemCount = document.getElementById('summaryItemCount');
+const cartCount = document.getElementById('cartCount');
+const miniCartBadge = document.getElementById('miniCartBadge');
+const checkoutLink = document.getElementById('checkoutLink');
+const pageCheckoutLink = document.getElementById('pageCheckoutLink');
+const floatingCartBtn = document.getElementById('floatingCartBtn');
+const navCartBtn = document.getElementById('navCartBtn');
 const filters = document.querySelectorAll('.filter');
 const authScreen = document.getElementById('authScreen');
 const appShell = document.getElementById('appShell');
@@ -157,6 +171,182 @@ const logoutBtn = document.getElementById('logoutBtn');
 const welcomeName = document.getElementById('welcomeName');
 let authMode = 'login';
 let activeCategory = 'All';
+const CART_KEY = 'temmyWearsCart';
+
+function getNumericPrice(priceText) {
+  return Number(String(priceText).replace(/[^\d]/g, '')) || 0;
+}
+
+function loadCart() {
+  try {
+    const storedCart = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+    return Array.isArray(storedCart) ? storedCart : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveCart(cartItems) {
+  localStorage.setItem(CART_KEY, JSON.stringify(cartItems));
+}
+
+function getCartSummary() {
+  const cartItems = loadCart();
+  const totalItems = cartItems.reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
+  const totalPrice = cartItems.reduce((sum, item) => sum + getNumericPrice(item.price) * (Number(item.quantity) || 0), 0);
+
+  return { totalItems, totalPrice };
+}
+
+function updateCartBadge() {
+  const { totalItems } = getCartSummary();
+
+  if (cartCount) {
+    cartCount.textContent = totalItems;
+  }
+
+  if (miniCartBadge) {
+    miniCartBadge.textContent = totalItems;
+  }
+}
+
+function buildCheckoutMessage() {
+  const cartItems = loadCart();
+
+  if (!cartItems.length) {
+    return 'Hello Temmy Wears, I want to checkout my cart.';
+  }
+
+  const itemSummary = cartItems
+    .map((item) => `${item.name} (${item.quantity})`)
+    .join(', ');
+  const { totalPrice } = getCartSummary();
+
+  return `Hello Temmy Wears, I want to order: ${itemSummary}. Total: ₦${totalPrice.toLocaleString('en-NG')}.`;
+}
+
+function renderCartItems() {
+  const cartItems = loadCart();
+  const totalPrice = getCartSummary().totalPrice;
+
+  if (!cartItemsContainer || !cartPageItems || !cartTotal || !summaryTotal || !summaryItemCount) {
+    return;
+  }
+
+  if (!cartItems.length) {
+    cartItemsContainer.innerHTML = '<div class="cart-empty">Your cart is empty. Add a product from the collection.</div>';
+    cartPageItems.innerHTML = '<div class="cart-empty">Your cart is empty. Add a product from the collection.</div>';
+    cartTotal.textContent = '₦0';
+    summaryTotal.textContent = '₦0';
+    summaryItemCount.textContent = '0';
+    updateCartBadge();
+    return;
+  }
+
+  cartItemsContainer.innerHTML = cartItems
+    .map((item) => `
+      <article class="cart-item">
+        <div class="cart-item-image">
+          <img src="${item.image}" alt="${item.name}" loading="lazy" />
+        </div>
+        <div class="cart-item-info">
+          <h4>${item.name}</h4>
+          <div class="cart-item-meta">
+            <span class="cart-item-price">${item.price}</span>
+            <span>Qty: ${item.quantity}</span>
+          </div>
+        </div>
+        <button class="cart-item-remove" type="button" data-remove-name="${item.name}">Remove</button>
+      </article>
+    `)
+    .join('');
+
+  cartPageItems.innerHTML = cartItems
+    .map((item) => `
+      <article class="cart-item">
+        <div class="cart-item-image">
+          <img src="${item.image}" alt="${item.name}" loading="lazy" />
+        </div>
+        <div class="cart-item-info">
+          <h4>${item.name}</h4>
+          <div class="cart-item-meta">
+            <span class="cart-item-price">${item.price}</span>
+            <span>Qty: ${item.quantity}</span>
+          </div>
+        </div>
+        <button class="cart-item-remove" type="button" data-remove-name="${item.name}">Remove</button>
+      </article>
+    `)
+    .join('');
+
+  const itemCount = cartItems.reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
+  cartTotal.textContent = `₦${totalPrice.toLocaleString('en-NG')}`;
+  summaryTotal.textContent = `₦${totalPrice.toLocaleString('en-NG')}`;
+  summaryItemCount.textContent = itemCount;
+  updateCartBadge();
+
+  if (checkoutLink) {
+    checkoutLink.href = `https://wa.me/2348064349486?text=${encodeURIComponent(buildCheckoutMessage())}`;
+  }
+
+  if (pageCheckoutLink) {
+    pageCheckoutLink.href = `https://wa.me/2348064349486?text=${encodeURIComponent(buildCheckoutMessage())}`;
+  }
+}
+
+function openCartDrawer() {
+  if (!cartDrawer || !cartOverlay) {
+    return;
+  }
+
+  cartDrawer.classList.add('is-open');
+  cartOverlay.classList.add('is-visible');
+}
+
+function closeCartDrawer() {
+  if (!cartDrawer || !cartOverlay) {
+    return;
+  }
+
+  cartDrawer.classList.remove('is-open');
+  cartOverlay.classList.remove('is-visible');
+}
+
+function addToCart(productName) {
+  const product = products.find((item) => item.name === productName);
+
+  if (!product) {
+    showAuthPopup('Unavailable product');
+    return;
+  }
+
+  const cartItems = loadCart();
+  const existingItem = cartItems.find((item) => item.name === product.name);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cartItems.push({
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      category: product.category,
+      quantity: 1
+    });
+  }
+
+  saveCart(cartItems);
+  renderCartItems();
+  document.getElementById('cartPage')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  openCartDrawer();
+  showAuthPopup(`${product.name} added to cart`);
+}
+
+function removeFromCart(productName) {
+  const cartItems = loadCart().filter((item) => item.name !== productName);
+  saveCart(cartItems);
+  renderCartItems();
+}
 
 function renderProducts(category = 'All', searchTerm = '') {
   if (!productGrid) {
@@ -190,7 +380,7 @@ function renderProducts(category = 'All', searchTerm = '') {
               <span class="price">${product.price}</span>
               ${product.inStock === false
                 ? '<span class="stock-label">Unavailable</span>'
-                : `<a class="buy-link" href="https://wa.me/2348064349486?text=${encodeURIComponent(`Hello Temmy Wears, I want to order the ${product.name}.`) }" target="_blank" rel="noopener noreferrer">Buy now</a>`}
+                : `<button class="buy-link" type="button" data-buy-product="${product.name}">Buy now</button>`}
             </div>
           </div>
         </article>
@@ -375,6 +565,61 @@ if (searchForm && searchInput) {
   });
 }
 
+if (productGrid) {
+  productGrid.addEventListener('click', (event) => {
+    const buyButton = event.target.closest('[data-buy-product]');
+    if (!buyButton) {
+      return;
+    }
+
+    addToCart(buyButton.dataset.buyProduct);
+  });
+}
+
+if (cartItemsContainer) {
+  cartItemsContainer.addEventListener('click', (event) => {
+    const removeButton = event.target.closest('[data-remove-name]');
+    if (!removeButton) {
+      return;
+    }
+
+    removeFromCart(removeButton.dataset.removeName);
+  });
+}
+
+if (cartPageItems) {
+  cartPageItems.addEventListener('click', (event) => {
+    const removeButton = event.target.closest('[data-remove-name]');
+    if (!removeButton) {
+      return;
+    }
+
+    removeFromCart(removeButton.dataset.removeName);
+  });
+}
+
+if (floatingCartBtn) {
+  floatingCartBtn.addEventListener('click', () => {
+    openCartDrawer();
+    document.getElementById('cartPage')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
+if (navCartBtn) {
+  navCartBtn.addEventListener('click', () => {
+    openCartDrawer();
+    document.getElementById('cartPage')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
+if (closeCartBtn) {
+  closeCartBtn.addEventListener('click', closeCartDrawer);
+}
+
+if (cartOverlay) {
+  cartOverlay.addEventListener('click', closeCartDrawer);
+}
+
 if (navToggle && navPanel) {
   navToggle.addEventListener('click', () => {
     const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
@@ -391,5 +636,6 @@ if (navToggle && navPanel) {
 }
 
 renderProducts();
+renderCartItems();
 setMode('login');
 applyAuthState();
