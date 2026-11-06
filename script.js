@@ -217,6 +217,21 @@ function updateCartBadge() {
   }
 }
 
+function getAbsoluteProductImageUrl(imageUrl) {
+  if (!imageUrl) {
+    return '';
+  }
+
+  if (/^https?:\/\//i.test(imageUrl)) {
+    return imageUrl;
+  }
+
+  const baseUrl = window.location.origin || 'https://temmywares.com';
+  const normalizedPath = imageUrl.startsWith('/') ? imageUrl : `/${imageUrl}`;
+
+  return `${baseUrl}${normalizedPath}`;
+}
+
 function buildCheckoutMessage() {
   const cartItems = loadCart();
 
@@ -225,11 +240,21 @@ function buildCheckoutMessage() {
   }
 
   const itemSummary = cartItems
-    .map((item) => `${item.name} (${item.quantity})`)
-    .join(', ');
+    .map((item) => {
+      const quantity = Number(item.quantity) || 1;
+      const productImage = item.image ? ` | Image: ${getAbsoluteProductImageUrl(item.image)}` : '';
+
+      return `${item.name} | Category: ${item.category || 'General'} | Price: ${item.price} | Qty: ${quantity}${productImage}`;
+    })
+    .join('\n');
+
   const { totalPrice } = getCartSummary();
 
-  return `Hello Temmy Wears, I want to order: ${itemSummary}. Total: ₦${totalPrice.toLocaleString('en-NG')}.`;
+  return `Hello Temmy Wears, I want to order the following items:\n\n${itemSummary}\n\nTotal: ₦${totalPrice.toLocaleString('en-NG')}\n\nPlease confirm availability and delivery details.`;
+}
+
+function getCheckoutLink() {
+  return `https://wa.me/2348064349486?text=${encodeURIComponent(buildCheckoutMessage())}`;
 }
 
 function renderCartItems() {
@@ -293,11 +318,11 @@ function renderCartItems() {
   updateCartBadge();
 
   if (checkoutLink) {
-    checkoutLink.href = `https://wa.me/2348064349486?text=${encodeURIComponent(buildCheckoutMessage())}`;
+    checkoutLink.href = getCheckoutLink();
   }
 
   if (pageCheckoutLink) {
-    pageCheckoutLink.href = `https://wa.me/2348064349486?text=${encodeURIComponent(buildCheckoutMessage())}`;
+    pageCheckoutLink.href = getCheckoutLink();
   }
 }
 
